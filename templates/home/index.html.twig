@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block importmap %}
+    {{ parent() }}
+    {{ importmap('controllers/home') }}
+{% endblock %}
+
+{% block main %}
+<main>
+    {% for sweat in sweats %}
+        {% include "partials/products/_card_shop.html.twig" %}
+    {% endfor %}
+</main>
+{% endblock %}

@@ -1,0 +1,47 @@
+.card-shop {
+    padding: 25px 20px;
+    border: 1px solid black;
+    background-color: lightgrey;
+}
+
+.card-shop__image {
+    width: 400px;
+    height: 500px;
+}
+
+.card-shop__container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.card-shop__text {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-left: 20px;
+}
+
+.card-shop__link {
+    margin-top: 20px;
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    text-transform: uppercase;
+    transform: scale(1);
+
+    transition: all 0.3s ease;
+}
+
+.card-shop__link:hover {
+    border: none;
+    background-color: white;
+    transform: scale(1.07);
+}

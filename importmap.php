@@ -25,4 +25,8 @@ return [
     '@hotwired/turbo' => [
         'version' => '7.3.0',
     ],
+    'controllers/home' => [
+        'path' => './assets/controllers/home.js',
+        'entrypoint' => true,
+    ],
 ];

@@ -1,3 +1,17 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
-    background-color: skyblue;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+
+a {
+    color: black;
+    text-decoration: none;
 }

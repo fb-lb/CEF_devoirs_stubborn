@@ -1,0 +1,10 @@
+footer {
+    background-color: lightgrey;
+    margin: 20px;
+    padding: 20px 30px;
+    border: 1px solid black;
+}
+
+footer h2 {
+    margin-top: 0;
+}
