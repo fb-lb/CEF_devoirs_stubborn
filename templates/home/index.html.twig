@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block importmap %}
+    {{ parent() }}
+    {{ importmap('controllers/home') }}
+{% endblock %}
+
+{% block main %}
+<main>
+    <h1>Ceci est ma page d'accueil</h1>
+</main>
+{% endblock %}
