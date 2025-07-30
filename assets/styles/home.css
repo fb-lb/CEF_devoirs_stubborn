@@ -1,3 +1,6 @@
-h1 {
-    color: green;
+main {
+    display: flex;
+    padding: 50px 0 150px 0;
+    justify-content: center;
+    gap: 30px;
 }
