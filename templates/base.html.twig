@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Stubborn, don't compromise on your look</title>
+        <meta name="description" content="Trouvez le sweat-shirt qui correspond à votre style unique. Votre look reflète votre personnalité, alors ne faites pas de compromis sur votre apparence.">
+        <link rel="icon" href="{{ asset('favicon.png') }}">
         {% block stylesheets %}
         {% endblock %}
-
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block header %}
+            {% include "partials/header.html.twig" %}
+        {% endblock %}
+        {% block main %}{% endblock %}
+        {% block footer %}
+            {% include "partials/footer.html.twig" %}
+        {% endblock %}
     </body>
 </html>
