@@ -7,8 +7,19 @@
 
 {% block main %}
 <main>
+    {% if app.request.query.get('registered') %}
+        <p class="flash flash-success">Un email vous a été envoyé, veuillez cliquer sur le lien contenu dans ce mail pour valider votre adresse mail.</p>
+    {% endif %}
+    {% for message in app.flashes('success') %}
+        <p class="flash flash-success">{{ message }}</p>
+    {% endfor %}
+    {% for message in app.flashes('verify_email_error') %}
+        <p class="flash flash-error">{{ message }}</p>
+    {% endfor %}
+    <div class="sweats-group">
     {% for sweat in sweats %}
         {% include "partials/products/_card_shop.html.twig" %}
     {% endfor %}
+    </div>
 </main>
 {% endblock %}

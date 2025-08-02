@@ -1,0 +1,9 @@
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+    <h1>Bonjour {{ user.name }} !!</h1>
+
+    <p style="width: fit-content; margin-bottom: 0;">Nous sommes très heureux de vous compter parmi nos nouveaux clients.</p>
+    <p style="width: fit-content; margin-top: 5px;">Veuillez valider votre adresse mail afin d'activer votre compte en cliquant sur le lien suivant :</p>
+    <a style="color: white; text-decoration: none; background-color: lightskyblue; padding: 10px; font-weight: bold; border-radius: 10px;" href="{{ signedUrl|raw }}">Confirmer mon adresse mail</a>
+    <small>Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.</small>
+    <p>Bienvenue parmi nous !!</p>
+</div>
