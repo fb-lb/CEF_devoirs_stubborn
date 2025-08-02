@@ -10,11 +10,11 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class HomeController extends AbstractController
 {
-    #[Route('/', name: 'home')]
+    #[Route('/', name: 'app_home')]
     public function index(ManagerRegistry $manager): Response
     {
         $sweats = $manager->getRepository(Sweat::class)->findBy(['top'=> true]);
-        //var_dump($sweats);
+        
         return $this->render('home/index.html.twig', [
             'sweats' => $sweats,
         ]);

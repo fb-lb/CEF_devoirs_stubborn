@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block importmap %}
+    {{ parent() }}
+    {{ importmap('controllers/registration') }}
+{% endblock %}
+
+{% block main %}
+<main>
+    {% for message in app.flashes('success') %}
+        <div class="success">{{ message }}</div>
+    {% endfor %}
+    <div class="groups">
+        <div class="registration">
+            <h1 class="registration__title">S'inscrire</h1>
+            {{ form_start(registrationForm, {
+                'attr': {'class': 'registration-form'}
+            }) }}
+                {{ form_row(registrationForm.name, {
+                    'row_attr': {'class': 'registration-form__name-group'},
+                    'attr': {'class': 'registration-form__name-input'},
+                    'label_attr': {'class': 'registration-form__name-label'}
+                }) }}
+                <div class='registration-form__email-group'>
+                    {{ form_label(registrationForm.email, null, {'attr': {'class': 'registration-form__email-label'}}) }}
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'registration-form__email-input'}}) }}
+                    {% for error in registrationForm.email.vars.errors %}
+                        <p class="error">{{ error.message }}</p>
+                    {% endfor %}
+                </div>
+                {{ form_row(registrationForm.delivery_address, {
+                    'row_attr': {'class': 'registration-form__delivery-address-group'},
+                    'attr': {'class': 'registration-form__delivery-address-input'},
+                    'label_attr': {'class': 'registration-form__delivery-address-label'}
+                }) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    'row_attr': {'class': 'registration-form__password-group'},
+                    'attr': {'class': 'registration-form__password-input'},
+                    'label_attr': {'class': 'registration-form__password-label'}
+                }) }}
+                <div class='registration-form__confirm-password-group'>
+                    {{ form_label(registrationForm.confirm_password, null, {'attr': {'class': 'registration-form__confirm-password-label'}}) }}
+                    {{ form_widget(registrationForm.confirm_password, {'attr': {'class': 'registration-form__confirm-password-input'}}) }}
+                    {% for error in registrationForm.confirm_password.vars.errors %}
+                        <p class='error'>{{ error.message }}</p>
+                    {% endfor %}
+                </div>
+                {{ form_row(registrationForm.submit, {
+                    'row_attr': {'class': 'registration-form__submit-group'},
+                    'attr': {'class': 'registration-form__submit-button'},
+                    'label': 'Créer un compte'
+                }) }}
+            {{ form_end(registrationForm) }}
+        </div>
+        <div class="registered">
+            <p class="registered__paragraph">Déjà inscrit ?</p>
+            <a class="registered__link" href="#">Se Connecter</a>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

@@ -29,4 +29,8 @@ return [
         'path' => './assets/controllers/home.js',
         'entrypoint' => true,
     ],
+    'controllers/registration' => [
+        'path' => './assets/controllers/registration.js',
+        'entrypoint' => true,
+    ],
 ];

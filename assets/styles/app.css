@@ -10,8 +10,30 @@ p {
     margin: 0;
 }
 
-
 a {
     color: black;
     text-decoration: none;
+}
+
+.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.error {
+    color: darkred;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+.flash-error {
+    color: darkred;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.flash-success {
+    color: darkgreen;
+    font-weight: bold;
+    font-size: 1.5rem;
 }

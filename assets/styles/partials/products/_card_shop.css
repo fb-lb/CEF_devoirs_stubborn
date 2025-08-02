@@ -9,7 +9,7 @@
     height: 500px;
 }
 
-.card-shop__container {
+.card-shop__group {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;

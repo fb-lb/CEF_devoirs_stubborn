@@ -1,0 +1,119 @@
+main {
+    margin-top: 50px;
+    margin-bottom: 35px;
+    display: flex;
+    justify-content: center;
+}
+
+.groups {
+    border: 1px solid black;
+    padding: 20px 15px 30px 15px;
+}
+
+.registration {
+    display: flex;
+    flex-direction: column;
+}
+
+.registration-form {
+    padding-right: 50px;
+    width: 200px;
+}
+
+.registration__title {
+    margin: 0 0 10px 0;
+    padding-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    border-bottom: 2px solid lightskyblue;
+}
+
+.registration-form__name-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.registration-form__name-input {
+    padding: 7px;
+}
+
+.registration-form__email-group {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.registration-form__email-input {
+    padding: 7px;
+}
+
+.registration-form__delivery-address-group {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.registration-form__delivery-address-input {
+    padding: 7px;
+}
+
+.registration-form__password-group {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.registration-form__password-input {
+    padding: 7px;
+}
+
+.registration-form__confirm-password-group {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.registration-form__confirm-password-input {
+    padding: 10px 0 15px 10px;
+}
+
+.registration-form__submit-group {
+    margin: 15px 0 20px 0;
+}
+
+.registration-form__submit-button {
+    background-color: rgb(98, 174, 250);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 7px 2px;
+    border-radius: 7px;
+    border: none;
+}
+
+.registration-form__submit-button:hover {
+    cursor: pointer;
+}
+
+.registered {
+    padding-top: 25px;
+    border-top: 2px solid lightskyblue;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.registered__link {
+    background-color: rgb(98, 174, 250);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 7px 10px;
+    border-radius: 7px;
+    width: fit-content;
+}
