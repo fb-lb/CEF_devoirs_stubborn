@@ -10,10 +10,14 @@
             <li><a class="home" href="{{ path('app_home') }}">Accueil</a></li>
             <li><a class="shop" href="#">Boutique</a></li>
             <li><a class="cart" href="#">Panier</a></li>
-            <li><a class="registration" href="{{ path('app_register') }}">S'inscrire</a></li>
-            <li><a class="login" href="#">Se connecter</a></li>
+            {% if not app.user %}
+                <li><a class="registration" href="{{ path('app_register') }}">S'inscrire</a></li>
+                <li><a class="login" href="{{ path('app_login') }}">Se connecter</a></li>
+            {% endif %}
             <li><a class="admin" href="#">Back-Office</a></li>
-            <li><a class="logout" href="#">Se déconnecter</a></li>
+            {% if app.user %}
+            <li><a class="logout" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>

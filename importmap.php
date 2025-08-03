@@ -33,4 +33,8 @@ return [
         'path' => './assets/controllers/registration.js',
         'entrypoint' => true,
     ],
+    'controllers/authentication' => [
+        'path' => './assets/controllers/authentication.js',
+        'entrypoint' => true,
+    ],
 ];
