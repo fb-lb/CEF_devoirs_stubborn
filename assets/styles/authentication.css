@@ -1,0 +1,93 @@
+main {
+    margin-top: 150px;
+    margin-bottom: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.groups {
+    border: 1px solid black;
+    padding: 20px 15px 30px 15px;
+}
+
+.authentication {
+    display: flex;
+    flex-direction: column;
+}
+
+.authentication-form {
+    display: flex;
+    flex-direction: column;
+    padding-right: 30px;
+    width: 220px;
+    gap:15px;
+}
+
+.authentication__title {
+    margin: 0 0 10px 0;
+    padding-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    border-bottom: 2px solid lightskyblue;
+}
+
+.authentication-form__name-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.authentication-form__name-input {
+    padding: 7px;
+}
+
+.authentication-form__password-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.authentication-form__password-input {
+    padding: 7px;
+}
+
+.authentication-form__submit-button {
+    margin-left: 10px;
+    padding: 7px 10px;
+    width: fit-content;
+    background-color: rgb(98, 174, 250);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 7px;
+    border: none;
+}
+
+.authentication-form__submit-button:hover {
+    cursor: pointer;
+}
+
+.authentication-form__forgotten-password {
+    color: #0000EE;
+    text-decoration: underline;
+}
+
+.not-registered {
+    margin-top: 15px;
+    padding-top: 25px;
+    border-top: 2px solid lightskyblue;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.not-registered__link {
+    margin-left: 10px;
+    background-color: rgb(98, 174, 250);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 7px 3px;
+    border-radius: 7px;
+    width: fit-content;
+}

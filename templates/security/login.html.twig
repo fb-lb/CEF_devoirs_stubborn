@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block importmap %}
+    {{ parent() }}
+    {{ importmap('controllers/authentication') }}
+{% endblock %}
+
+{% block main %}
+<main>
+    <div class="groups">
+        <div class="authentication">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            {% if app.user %}
+                <p class="authentication__authenticated">Vous êtes connecté en tant que : {{ app.user.name }}</p>
+                <a href="{{ path('app_logout') }}">Se déconnecter</a>
+            {% endif %}
+            <h1 class="authentication__title">Se connecter</h1>
+            <form class="authentication-form" method="post">
+                <div class="authentication-form__name-group">
+                    <label class="authentication-form__name-label" for="inputName">Nom utilisateur</label>
+                    <input type="text" value="JohnDoe" name="name" id="inputName" class="form-control authentication-form__name-input" autocomplete="email" required autofocus>
+                    {# value for name value="{{ last_username }}" #}
+                </div>
+                <div class="authentication-form__password-group">
+                    <label class="authentication-form__password-label" for="inputPassword">Mot de passe</label>
+                    <input type="password" value='1234567' name="password" id="inputPassword" class="form-control authentication-form__password-input" autocomplete="current-password" required>
+                </div>
+                <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+                <button class="authentication-form__submit-button" type="submit">Se Connecter</button>
+                <a href="#" class="authentication-form__forgotten-password">Mot de passe oublié</a>
+            </form>
+        </div>
+        <div class="not-registered">
+            <p class="not-registered__paragraph">Pas encore inscrit ?</p>
+            <a href="#" class="not-registered__link">Créer un compte</a>
+        </div>
+    </div>
+</main>
+{% endblock %}
