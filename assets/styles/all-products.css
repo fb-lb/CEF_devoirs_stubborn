@@ -1,0 +1,41 @@
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 60px;
+}
+
+.price-filter {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.price-filter__legend {
+    border: 1px solid black;
+    border-bottom: none;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.price-filter__button-group {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding-bottom: 1rem;
+}
+
+.price-filter__button {
+    background-color: white;
+    border: none;
+    text-align: start;
+}
+
+.price-filter__button:hover {
+    background-color: lightskyblue;
+}
