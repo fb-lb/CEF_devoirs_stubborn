@@ -1,10 +1,12 @@
-<section class="card-shop">
+<section class="card-shop" data-price='{{ sweat.price }}'>
     <img class="card-shop__image" src="{{ asset('images/' ~ sweat.fileName ~ '.jpeg') }}" alt="">
     <div class="card-shop__group">
         <div class="card-shop__text">
             <p class="card-shop__name">Nom : {{ sweat.name }}</p>
-            <p class="card-shop__price">Prix : {{ sweat.price }}€</p>
+            <p class="card-shop__price">Prix : {{ sweat.price|number_format('2', ',') }}€</p>
         </div>
-        <a class="card-shop__link" href="#">Voir</a>
+        {% if app.user %}
+            <a class="card-shop__link" href="#">Voir</a>
+        {% endif %}
     </div>
 </section>

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block importmap %}
+    {{ parent() }}
+    {{ importmap('controllers/all-products') }}
+{% endblock %}
+
+{% block main %}
+<main>
+    <fieldset class="price-filter">
+        <legend class="price-filter__legend">Fourchette de prix</legend>
+        <div class="price-filter__button-group">
+            <button class="price-filter__button" type="button" data-min="10" data-max= "30">10 à 30 €</button>
+            <button class="price-filter__button" type="button" data-min="30" data-max= "35">30 à 35 €</button>
+            <button class="price-filter__button" type="button" data-min="35" data-max= "50">35 à 50 €</button>
+        </div>
+    </fieldset>
+    {% for sweat in sweats %}
+        {% include "partials/products/_card_shop.html.twig" %}
+    {% endfor %}
+</main>
+{% endblock %}

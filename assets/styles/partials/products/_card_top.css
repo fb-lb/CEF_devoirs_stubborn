@@ -2,13 +2,11 @@
     padding: 25px 20px;
     border: 1px solid black;
     background-color: lightgrey;
-    min-width: 345px;
-    width: 30%;
-    box-sizing: border-box;
 }
 
 .card-shop__image {
-    width: 100%;
+    width: 400px;
+    height: 500px;
 }
 
 .card-shop__group {
