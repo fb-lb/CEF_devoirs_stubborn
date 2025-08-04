@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block importmap %}
+    {{ parent() }}
+    {{ importmap('controllers/error-404') }}
+{% endblock %}
+
+{% block main %}
+<main class="not-found">
+    <h1 class="not-found__title">Mince, cette page est introuvable</h1>
+    <p class="not-found__text">Veuillez revenir à la page d'accueil :</p>
+    <a href="{{ path('app_home') }}" class="not-found__link">Retour à la page d'accueil</a>
+</main>
+{% endblock %}

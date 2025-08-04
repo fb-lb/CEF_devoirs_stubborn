@@ -10,7 +10,7 @@ main {
     padding: 20px 15px 30px 15px;
 }
 
-.registration {
+.registration-group {
     display: flex;
     flex-direction: column;
 }
@@ -20,7 +20,7 @@ main {
     width: 200px;
 }
 
-.registration__title {
+.registration-group__title {
     margin: 0 0 10px 0;
     padding-bottom: 10px;
     font-size: 1rem;
@@ -100,7 +100,7 @@ main {
     cursor: pointer;
 }
 
-.registered {
+.registered-group {
     padding-top: 25px;
     border-top: 2px solid lightskyblue;
     display: flex;
@@ -108,7 +108,7 @@ main {
     gap: 10px;
 }
 
-.registered__link {
+.registered-group__link {
     background-color: rgb(98, 174, 250);
     color: white;
     font-size: 1.5rem;

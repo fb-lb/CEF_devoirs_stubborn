@@ -11,8 +11,8 @@
         <div class="success">{{ message }}</div>
     {% endfor %}
     <div class="groups">
-        <div class="registration">
-            <h1 class="registration__title">S'inscrire</h1>
+        <div class="registration-group">
+            <h1 class="registration-group__title">S'inscrire</h1>
             {{ form_start(registrationForm, {
                 'attr': {'class': 'registration-form'}
             }) }}
@@ -52,9 +52,9 @@
                 }) }}
             {{ form_end(registrationForm) }}
         </div>
-        <div class="registered">
-            <p class="registered__paragraph">Déjà inscrit ?</p>
-            <a class="registered__link" href="{{ path('app_login') }}">Se Connecter</a>
+        <div class="registered-group">
+            <p class="registered-group__paragraph">Déjà inscrit ?</p>
+            <a class="registered-group__link" href="{{ path('app_login') }}">Se Connecter</a>
         </div>
     </div>
 </main>
