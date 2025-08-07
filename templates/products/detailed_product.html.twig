@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block importmap %}
+    {{ parent() }}
+    {{ importmap("controllers/detailed-product") }}
+{% endblock %}
+
+{% block main %}
+<main class="product-page">
+    <img class="product-page__image" src="{{ asset('images/' ~ sweat.fileName ~ '.jpeg') }}" alt="Photo d'un sweat">
+    {{ form_start(addCartForm, {'attr': {'class': 'add-cart-form'} }) }}
+        <div class="add-cart-form__content">
+            <div class="add-cart-form__info">
+                <p class="add-cart-form__name">{{ sweat.name }}</p>
+                <p class="add-cart-form__price">{{ sweat.price|number_format('2',',') }} €</p>
+            </div>
+            <fieldset class="add-cart-form__fieldset">
+                <legend class="add-cart-form__legend">{{ addCartForm.size.vars.label }}</legend>
+                <div class="add-cart-form__size-group">
+                    {% for choice in addCartForm.size %}
+                    {{ form_widget(choice, {
+                        'attr': {'class': 'add-cart-form__size-input'},
+                    }) }}
+                    {{ form_label(choice, null, {
+                        'label_attr': {'class': 'add-cart-form__size-label'},
+                    }) }}
+                    {% endfor %}
+                </div>
+            </fieldset>
+        </div>
+        {{ form_widget(addCartForm.submit,{'attr': {
+            'class': 'add-cart-form__submit-button'
+            }})
+        }}
+    {{ form_end(addCartForm) }}
+</main>
+{% endblock %}

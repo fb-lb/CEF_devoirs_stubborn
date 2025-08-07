@@ -1,0 +1,29 @@
+.not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 150px 0 150px 0;
+}
+
+.not-found__title {
+    text-decoration: underline;
+    margin-bottom: 50px;
+}
+
+.not-found__link {
+    background-color: lightgrey;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    transform: scale(1);
+    text-align: center;
+
+    transition: all 0.3s ease;
+}
+
+.not-found__link:hover {
+    background-color: white;
+    border-radius: 15px;
+    transform: scale(1.07);
+}
