@@ -22,7 +22,7 @@
                     'label_attr': {'class': 'registration-form__name-label'}
                 }) }}
                 <div class='registration-form__email-group'>
-                    {{ form_label(registrationForm.email, null, {'attr': {'class': 'registration-form__email-label'}}) }}
+                    {{ form_label(registrationForm.email, null, {'label_attr': {'class': 'registration-form__email-label'}}) }}
                     {{ form_widget(registrationForm.email, {'attr': {'class': 'registration-form__email-input'}}) }}
                     {% for error in registrationForm.email.vars.errors %}
                         <p class="error">{{ error.message }}</p>
@@ -39,7 +39,7 @@
                     'label_attr': {'class': 'registration-form__password-label'}
                 }) }}
                 <div class='registration-form__confirm-password-group'>
-                    {{ form_label(registrationForm.confirm_password, null, {'attr': {'class': 'registration-form__confirm-password-label'}}) }}
+                    {{ form_label(registrationForm.confirm_password, null, {'label_attr': {'class': 'registration-form__confirm-password-label'}}) }}
                     {{ form_widget(registrationForm.confirm_password, {'attr': {'class': 'registration-form__confirm-password-input'}}) }}
                     {% for error in registrationForm.confirm_password.vars.errors %}
                         <p class='error'>{{ error.message }}</p>

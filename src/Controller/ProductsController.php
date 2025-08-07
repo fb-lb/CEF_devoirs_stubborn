@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Sweat;
+use App\Form\AddCartType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,13 +28,19 @@ final class ProductsController extends AbstractController
     public function detailedProduct(ManagerRegistry $manager, int $id): Response
     {
         $sweat = $manager->getRepository(Sweat::class)->find($id);
-
+        
         if (!$sweat) {
             throw new NotFoundHttpException('Le produit demandé est introuvable.');
         }
 
+        $form = $this->createForm(AddCartType::class, [
+            'sweat' => $sweat->getId(),
+            'size' => 'm'
+        ]);
+        
         return $this->render('products/detailed_product.html.twig', [
             'sweat' => $sweat,
+            'addCartForm' => $form,
         ]);
     }
 }

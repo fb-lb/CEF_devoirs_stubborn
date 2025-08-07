@@ -45,4 +45,8 @@ return [
         'path' => './assets/controllers/error-404.js',
         'entrypoint' => true,
     ],
+    'controllers/detailed-product' => [
+        'path' => './assets/controllers/detailed-product.js',
+        'entrypoint' => true,
+    ],
 ];
