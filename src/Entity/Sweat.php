@@ -30,7 +30,7 @@ class Sweat
     /**
      * @var Collection<int, SweatVariant>
      */
-    #[ORM\OneToMany(targetEntity: SweatVariant::class, mappedBy: 'sweat', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: SweatVariant::class, mappedBy: 'sweat', orphanRemoval: true, cascade: ['persist'])]
     private Collection $sweatVariants;
 
     public function __construct()

@@ -16,7 +16,9 @@
                 <li><a class="registration" href="{{ path('app_register') }}">S'inscrire</a></li>
                 <li><a class="login" href="{{ path('app_login') }}">Se connecter</a></li>
             {% endif %}
-            <li><a class="admin" href="#">Back-Office</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a class="admin" href="{{ path('app_back_office') }}">Back-Office</a></li>
+            {% endif %}
             {% if app.user %}
                 <li><a class="logout" href="{{ path('app_logout') }}">Se déconnecter</a></li>
             {% endif %}

@@ -1,5 +1,5 @@
 <section class="card-shop" data-price='{{ sweat.price }}'>
-    <img class="card-shop__image" src="{{ asset('images/' ~ sweat.fileName ~ '.jpeg') }}" alt="Photo d'un sweat">
+    <img class="card-shop__image" src="{{ asset(sweat.fileName) }}" alt="Photo d'un sweat">
     <div class="card-shop__group">
         <div class="card-shop__text">
             <p class="card-shop__name">{{ sweat.name }}</p>

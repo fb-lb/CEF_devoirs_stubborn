@@ -1,0 +1,143 @@
+main {
+    margin: 60px 10% 30px 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+}
+
+.add-sweat-form {
+    padding: 20px 20px 20px 10px;
+    display: flex;
+    gap: 30px;
+    border: 1px solid black;
+}
+
+.add-sweat-form__file-container {
+    display: flex;
+    width: 150px;
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+.add-sweat-form__file {
+    display: none;
+}
+
+.add-sweat-form__file-label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add-sweat-form__file-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.add-sweat-form__file-placeholder {
+    text-align: center;
+}
+
+.add-sweat-form__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.add-sweat-form__input-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-sweat-form__name-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 3%;
+}
+
+.add-sweat-form__name-label {
+    padding-left: 10px;
+}
+
+.add-sweat-form__name-input {
+    padding: 5px;
+    width: 100%;
+}
+
+.add-sweat-form__price-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 3%;
+}
+
+.add-sweat-form__price-label {
+    padding-left: 10px;
+}
+
+.add-sweat-form__price-input {
+    padding: 5px;
+    width: 100%;
+}
+
+.add-sweat-form__stock-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 3%;
+}
+
+.add-sweat-form__stock-label {
+    text-align: center;
+}
+
+.add-sweat-form__stock-input {
+    padding: 5px;
+    width: 100%;
+}
+
+.add-sweat-form__actions-group {
+    padding-right: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-sweat-form__top-group {
+
+}
+
+.add-sweat-form__top-label {
+
+}
+
+.add-sweat-form__top-check-box {
+
+}
+
+.add-sweat-form__buttons-group {
+    display: flex;
+    gap: 10px;
+}
+
+.add-sweat-form__submit-button {
+    padding: 15px 0 15px 0;
+    background-color: white;
+    width: 200px;
+    text-align: center;
+    text-transform: uppercase;
+    border: 1px solid black;
+    border-radius: 10px;
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.add-sweat-form__submit-button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
