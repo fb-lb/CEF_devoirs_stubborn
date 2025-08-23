@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block importmap %}
+    {{ parent() }}
+    {{ importmap('controllers/back-office') }}
+{% endblock %}
+
+{% block main %}
+<main>
+    {% for message in app.flashes('success') %}
+        <p class="flash-success">{{ message }}</p>
+    {% endfor %}
+    {{ form_start(addSweatForm, {'attr': {'class': 'add-sweat-form'}}) }}
+        <div class="add-sweat-form__file-container">
+            {{ form_widget(addSweatForm.file, {
+                'id': 'sweat-file-add',
+                'attr': {
+                    'class': 'add-sweat-form__file',
+                    'data-id': 'add',
+                }
+            }) }}
+            <label for="sweat-file-add" class="add-sweat-form__file-label">
+                <img id="file-preview-add" class="add-sweat-form__file-preview hidden" src="#" alt="Aperçu de l'image">
+                <span id="file-placeholder-add" class="add-sweat-form__file-placeholder">Cliquez pour ajouter une image</span>
+            </label>
+        </div>
+        <div class="add-sweat-form__content">
+            <div class="add-sweat-form__input-group">
+                <div class="add-sweat-form__name-group">
+                    {{ form_label(addSweatForm.name, null, {'label_attr': {'class': 'add-sweat-form__name-label'}}) }}
+                    {{ form_widget(addSweatForm.name, {'attr': {'class': 'add-sweat-form__name-input'}}) }}
+                </div>
+                <div class="add-sweat-form__price-group">
+                    {{ form_label(addSweatForm.price, null, {'label_attr': {'class': 'add-sweat-form__price-label'}}) }}
+                    {{ form_widget(addSweatForm.price, {'attr': {'class': 'add-sweat-form__price-input'}}) }}
+                </div>
+                {% for variant in addSweatForm.sweatVariants %}
+                    <div class="add-sweat-form__stock-group">
+                        {{ form_label(variant.stock, 'Stock ' ~ variant.vars.data.size.size|upper, {'label_attr': {'class': 'add-sweat-form__stock-label'}}) }}
+                        {{ form_widget(variant.stock, {'attr': {'class': 'add-sweat-form__stock-input', 'value': 2}}) }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="add-sweat-form__actions-group">
+                <div class="add-sweat-form__top-group">
+                    {{ form_label(addSweatForm.top, null, {'label_attr': {'class': 'add-sweat-form__top-label'}}) }}
+                    {{ form_widget(addSweatForm.top, {'attr': {'class': 'add-sweat-form__top-check-box'}}) }}
+                </div>
+                {{ form_widget(addSweatForm.add, {'attr': {'class': 'add-sweat-form__submit-button'}}) }}
+            </div>
+        </div>
+    {{ form_end(addSweatForm) }}
+    {% for manageSweatForm in manageSweatForms %}
+        {{ form_start(manageSweatForm, {'attr': {'id': 'form_sweat_' ~ manageSweatForm.vars.value.id, 'class': 'add-sweat-form'}}) }}
+            <div class="add-sweat-form__file-container">
+            {{ form_widget(manageSweatForm.file, {'id': 'sweat-file-' ~ manageSweatForm.vars.value.id, 'attr': {
+                'class': 'add-sweat-form__file',
+                'data-id': manageSweatForm.vars.value.id
+            }}) }}
+            <label for="{{ 'sweat-file-' ~ manageSweatForm.vars.value.id }}" class="add-sweat-form__file-label">
+                <img id="{{ 'file-preview-' ~ manageSweatForm.vars.value.id }}" class="add-sweat-form__file-preview" src="{{ asset(manageSweatForm.vars.value.fileName) }}" alt="Aperçu de l'image">
+                <span id="{{ 'file-placeholder-' ~ manageSweatForm.vars.value.id }}" class="add-sweat-form__file-placeholder hidden">Cliquez pour ajouter une image</span>
+            </label>
+        </div>
+        <div class="add-sweat-form__content">
+            <div class="add-sweat-form__input-group">
+                <div class="add-sweat-form__name-group">
+                    {{ form_label(manageSweatForm.name, null, {'label_attr': {'class': 'add-sweat-form__name-label'}}) }}
+                    {{ form_widget(manageSweatForm.name, {'attr': {'class': 'add-sweat-form__name-input'}}) }}
+                </div>
+                <div class="add-sweat-form__price-group">
+                    {{ form_label(manageSweatForm.price, null, {'label_attr': {'class': 'add-sweat-form__price-label'}}) }}
+                    {{ form_widget(manageSweatForm.price, {'attr': {'class': 'add-sweat-form__price-input'}}) }}
+                </div>
+                {% for variant in manageSweatForm.sweatVariants %}
+                    <div class="add-sweat-form__stock-group">
+                        {{ form_label(variant.stock, 'Stock ' ~ variant.vars.data.size.size|upper, {'label_attr': {'class': 'add-sweat-form__stock-label'}}) }}
+                        {{ form_widget(variant.stock, {'attr': {'class': 'add-sweat-form__stock-input'}}) }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="add-sweat-form__actions-group">
+                <div class="add-sweat-form__top-group">
+                    {{ form_label(manageSweatForm.top, null, {'label_attr': {'class': 'add-sweat-form__top-label'}}) }}
+                    {{ form_widget(manageSweatForm.top, {'attr': {'class': 'add-sweat-form__top-check-box'}}) }}
+                </div>
+                <div class="add-sweat-form__buttons-group">
+                    {{ form_widget(manageSweatForm.delete, {'attr': {'class': 'add-sweat-form__submit-button'}}) }}
+                    {{ form_widget(manageSweatForm.update, {'attr': {'class': 'add-sweat-form__submit-button'}}) }}
+                </div>
+            </div>
+        </div>
+        {{ form_end(manageSweatForm) }}
+    {% endfor %}
+</main>
+{% endblock %}

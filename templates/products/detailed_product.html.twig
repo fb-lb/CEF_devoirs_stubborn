@@ -7,7 +7,7 @@
 
 {% block main %}
 <main class="product-page">
-    <img class="product-page__image" src="{{ asset('images/' ~ sweat.fileName ~ '.jpeg') }}" alt="Photo d'un sweat">
+    <img class="product-page__image" src="{{ asset(sweat.fileName) }}" alt="Photo d'un sweat">
     {{ form_start(addCartForm, {'attr': {'class': 'add-cart-form'} }) }}
         <div class="add-cart-form__content">
             <div class="add-cart-form__info">
