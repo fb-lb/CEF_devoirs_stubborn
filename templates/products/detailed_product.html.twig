@@ -32,6 +32,9 @@
             'class': 'add-cart-form__submit-button'
             }})
         }}
+        {% for message in app.flashes('success') %}
+            <div class="flash-success">{{ message }}</div>
+        {% endfor %}
     {{ form_end(addCartForm) }}
 </main>
 {% endblock %}

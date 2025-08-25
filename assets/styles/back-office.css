@@ -108,18 +108,6 @@ main {
     justify-content: space-between;
 }
 
-.add-sweat-form__top-group {
-
-}
-
-.add-sweat-form__top-label {
-
-}
-
-.add-sweat-form__top-check-box {
-
-}
-
 .add-sweat-form__buttons-group {
     display: flex;
     gap: 10px;

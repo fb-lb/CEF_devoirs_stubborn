@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block importmap %}
+    {{ parent() }}
+    {{ importmap('controllers/cart') }}
+{% endblock %}
+
+{% block main %}
+<main>
+    {% for message in app.flashes('success') %}
+        <p class='flash-success'>{{ message }}</p>
+    {% endfor %}
+    {% for cartForm in allCartForms %}
+        {{ form_start(cartForm, {'attr': {'class': 'remove-cart-form'}}) }}
+            <img class="remove-cart-form__image" src="{{ asset(cartForm.vars.value.SweatVariant.sweat.fileName) }}" alt="a sweat photo">
+            <div class="remove-cart-form__content">
+                <div class="remove-cart-form__info">
+                    <p class="remove-cart-form__name">{{ cartForm.vars.value.SweatVariant.sweat.name }}</p>
+                    <p class="remove-cart-form__price">{{ cartForm.vars.value.SweatVariant.sweat.price|number_format(2, ',', ' ') }} €</p>
+                    <p class="remove-cart-form__size">Taille : {{ cartForm.vars.value.SweatVariant.size.size|upper }}</p>
+                </div>
+                {{ form_widget(cartForm.submit, {'attr': {'class': 'remove-cart-form__button'}}) }}
+            </div>
+        {{ form_end(cartForm) }}
+    {% endfor %}
+    <section class="card-actions">
+        <p class="card-actions__total-price">TOTAL : {{ totalPrice|number_format(2, ',', ' ') }} €</p>
+        <div class="card-actions__buttons">
+            <a href="#" class="card-actions__button card-actions__button--payment">Finaliser ma commande</a>
+            <a href="{{ path('app_all_products') }}" class="card-actions__button card-actions__button--keep-shopping">Continuer mes achats</a>  
+        </div>
+    </section>
+</main>
+{% endblock %}

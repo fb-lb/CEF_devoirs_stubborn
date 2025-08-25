@@ -29,7 +29,6 @@ class AddCartType extends AbstractType
                     return $key;
                 }
             ])
-            ->add('sweat', HiddenType::class)
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter au panier'
             ])

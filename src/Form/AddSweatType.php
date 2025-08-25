@@ -59,9 +59,6 @@ class AddSweatType extends AbstractType
                 'allow_add' => true,
                 'by_reference' => false,
             ])
-            // ->add('submit', SubmitType::class, [
-            //     'label' => 'Ajouter'
-            // ])
         ;
         
         if ($options['with_add']) {
