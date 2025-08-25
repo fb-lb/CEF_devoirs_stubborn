@@ -1,5 +1,12 @@
 import '../styles/back-office.css';
 
+// Add active class on menu link leading to admin page
+document.addEventListener("DOMContentLoaded", () => {
+    const adminLink = document.getElementsByClassName("admin");
+    adminLink[0].classList.add('active');
+});
+
+// Display sweat image if one is selected in all pages's forms
 document.addEventListener('change', (event) => {
     if (event.target && event.target.id.includes('sweat-file-')) {
         const id = event.target.dataset.id;

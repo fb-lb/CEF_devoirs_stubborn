@@ -1,0 +1,104 @@
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 10%;
+}
+
+.remove-cart-form {
+    padding: 20px 40px;
+    display: flex;
+    gap: 5%;
+    border: 1px solid black;
+}
+
+.remove-cart-form__image {
+    width: 200px;
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+    object-fit: contain;
+}
+
+.remove-cart-form__content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.remove-cart-form__info {
+    padding: 10px 50px 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remove-cart-form__button {
+    margin-left: auto;
+    padding: 12px 35px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.remove-cart-form__button:hover {
+    background-color: lightgray;
+    transform: scale(1.05);
+}
+
+.card-actions {
+    margin-left: 50%;
+    display: flex;
+    gap: 10px;
+    height: 110px;
+}
+
+.card-actions__total-price {
+    height: 40%;
+    border: 1px solid black;
+    align-content: center;
+    padding: 0 10%;
+}
+
+.card-actions__buttons {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.card-actions__button {
+    height: 100%;
+    align-content: center;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.card-actions__button--payment {
+    background-color: rgba(250, 128, 114, 0.5);
+    border: 2px solid salmon;
+    border-radius: 5px;
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.card-actions__button--payment:hover {
+    background-color: salmon;
+    transform: scale(1.03);
+}
+
+.card-actions__button--keep-shopping {
+    background-color: rgba(144, 238, 144, 0.5);
+    border: 2px solid lightgreen;
+    border-radius: 5px;
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.card-actions__button--keep-shopping:hover {
+    background-color: lightgreen;
+    transform: scale(1.03);
+}

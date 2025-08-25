@@ -53,4 +53,8 @@ return [
         'path' => './assets/controllers/back-office.js',
         'entrypoint' => true,
     ],
+    'controllers/cart' => [
+        'path' => './assets/controllers/cart.js',
+        'entrypoint' => true,
+    ],
 ];

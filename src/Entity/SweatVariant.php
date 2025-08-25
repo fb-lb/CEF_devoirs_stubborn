@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SweatVariantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SweatVariantRepository::class)]
@@ -23,6 +25,17 @@ class SweatVariant
     #[ORM\ManyToOne(inversedBy: 'sweatVariants')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Size $size = null;
+
+    /**
+     * @var Collection<int, Cart>
+     */
+    #[ORM\OneToMany(targetEntity: Cart::class, mappedBy: 'SweatVariant', orphanRemoval: true)]
+    private Collection $carts;
+
+    public function __construct()
+    {
+        $this->carts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -61,6 +74,36 @@ class SweatVariant
     public function setSize(?Size $size): static
     {
         $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cart>
+     */
+    public function getCarts(): Collection
+    {
+        return $this->carts;
+    }
+
+    public function addCart(Cart $cart): static
+    {
+        if (!$this->carts->contains($cart)) {
+            $this->carts->add($cart);
+            $cart->setSweatVariant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCart(Cart $cart): static
+    {
+        if ($this->carts->removeElement($cart)) {
+            // set the owning side to null (unless already changed)
+            if ($cart->getSweatVariant() === $this) {
+                $cart->setSweatVariant(null);
+            }
+        }
 
         return $this;
     }
