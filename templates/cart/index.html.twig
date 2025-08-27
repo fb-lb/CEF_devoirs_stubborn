@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+
 {% block importmap %}
     {{ parent() }}
     {{ importmap('controllers/cart') }}
@@ -26,9 +31,22 @@
     <section class="card-actions">
         <p class="card-actions__total-price">TOTAL : {{ totalPrice|number_format(2, ',', ' ') }} €</p>
         <div class="card-actions__buttons">
-            <a href="#" class="card-actions__button card-actions__button--payment">Finaliser ma commande</a>
+            <button class="card-actions__button card-actions__button--payment modal-toggle">Finaliser ma commande</button>
             <a href="{{ path('app_all_products') }}" class="card-actions__button card-actions__button--keep-shopping">Continuer mes achats</a>  
         </div>
     </section>
+    <div id='stripe-public-key' data-public-key="{{ publicKey }}"></div>
+    <div id="payment-modal" class="modal hidden-modal">
+        <div class="modal__overlay modal-toggle"></div>
+        <div class="modal__content">
+            <span class="modal__close modal-toggle">&times;</span>
+            <h2 class="modal__title">Paiement sécurisé</h2>
+            <form action="#" id="payment-form" class="modal__form">
+                <div id="card-element"></div>
+                <div id="userName" data-name="{{ app.user.name }}"></div>
+                <button id="sumbit-payment" class="modal__button" type="submit">Payer</button>
+            </form>
+        </div>
+    </div>
 </main>
 {% endblock %}
