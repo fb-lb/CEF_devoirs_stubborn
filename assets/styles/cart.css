@@ -83,6 +83,8 @@ main {
     border-radius: 5px;
     transform: scale(1);
     transition: all 0.3s ease;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 .card-actions__button--payment:hover {
@@ -99,6 +101,92 @@ main {
 }
 
 .card-actions__button--keep-shopping:hover {
+    background-color: lightgreen;
+    transform: scale(1.03);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(1,1,1,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.modal.hidden-modal {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.modal__overlay {
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.modal__content {
+    z-index: 1;
+    background-color: white;
+    width: 500px;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal__close {
+    margin-left: auto;
+    width: 40px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 10px;
+    align-self: flex-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.modal__close:hover {
+    transform: scale(1.05);
+    background-color: lightgrey;
+}
+
+.modal__title {
+    text-align: center;
+}
+
+.modal__form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.modal__button {
+    cursor: pointer;
+    padding: 5px;
+    border: 2px solid lightgreen;
+    border-radius: 7px;
+    background-color: rgba(144,238,144,0.5);
+    transform: scale(1.0);
+    transition: all 0.3s ease;
+}
+
+.modal__button:hover {
     background-color: lightgreen;
     transform: scale(1.03);
 }

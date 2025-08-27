@@ -5,8 +5,11 @@ namespace App\Controller;
 use App\Form\RemoveCartType;
 use App\Repository\CartRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Stripe\PaymentIntent;
+use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -48,6 +51,46 @@ final class CartController extends AbstractController
         return $this->render('cart/index.html.twig', [
             'allCartForms' => $allCartFormsViews ?? [],
             'totalPrice' => $totalPrice,
+            'publicKey' => $this->getParameter('stripe_public_key'),
+        ]);
+    }
+
+    #[Route('/cart-payment', name:'app_cart_payment')]
+    #[IsGranted('ROLE_USER')]
+    public function cartPayment(CartRepository $cartRepository): JsonResponse
+    {
+        $cartProducts = $cartRepository->findWithSweatAndSizeByCustomer($this->getUser());
+        $totalPrice = 0;
+        foreach ($cartProducts as $cartProduct) {
+            $totalPrice += $cartProduct->getSweatVariant()->getSweat()->getPrice();
+        } 
+        $amount = (int) round($totalPrice*100);
+
+        Stripe::setApiKey($this->getParameter('stripe_secret_key'));
+        $paymentIntent = PaymentIntent::create([
+            'amount' => $amount, // montant en centimes
+            'currency' => 'eur',
+            'automatic_payment_methods' => ['enabled' => true]
+        ]);
+
+        return new JsonResponse([
+            'clientSecret' => $paymentIntent->client_secret,
+        ]);
+    }
+
+    #[Route('/cart-payment-confirmed', name:'app-cart-payment-confirmed')]
+    #[IsGranted('ROLE_USER')]
+    public function cartPaymentConfirmed(CartRepository $cartRepository, EntityManagerInterface $em): JsonResponse
+    {
+        $cartProducts = $cartRepository->findBy(['customer' => $this->getUser()]);
+        foreach ($cartProducts as $cartProduct) {
+            $em->remove($cartProduct);
+            $em->flush();
+            // Next step is to create an Order Entity to save the orders
+        }
+        $this->addFlash('success', "Le paiement est validé, nous vous remercions pour votre achat");
+        return new JsonResponse([
+            'success' => true
         ]);
     }
 }
