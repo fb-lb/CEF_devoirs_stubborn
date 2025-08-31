@@ -4,9 +4,8 @@ namespace App\Controller;
 
 use App\Form\RemoveCartType;
 use App\Repository\CartRepository;
+use App\Service\StripeService;
 use Doctrine\ORM\EntityManagerInterface;
-use Stripe\PaymentIntent;
-use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -15,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-final class CartController extends AbstractController
+class CartController extends AbstractController
 {
     #[Route('/cart', name: 'app_cart')]
     #[IsGranted('ROLE_USER')]
@@ -57,7 +56,7 @@ final class CartController extends AbstractController
 
     #[Route('/cart-payment', name:'app_cart_payment')]
     #[IsGranted('ROLE_USER')]
-    public function cartPayment(CartRepository $cartRepository): JsonResponse
+    public function cartPayment(CartRepository $cartRepository, StripeService $stripeService): JsonResponse
     {
         $cartProducts = $cartRepository->findWithSweatAndSizeByCustomer($this->getUser());
         $totalPrice = 0;
@@ -66,12 +65,7 @@ final class CartController extends AbstractController
         } 
         $amount = (int) round($totalPrice*100);
 
-        Stripe::setApiKey($this->getParameter('stripe_secret_key'));
-        $paymentIntent = PaymentIntent::create([
-            'amount' => $amount, // montant en centimes
-            'currency' => 'eur',
-            'automatic_payment_methods' => ['enabled' => true]
-        ]);
+        $paymentIntent = $stripeService->createPaymentIntent($amount);
 
         return new JsonResponse([
             'clientSecret' => $paymentIntent->client_secret,

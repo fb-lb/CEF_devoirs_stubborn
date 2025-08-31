@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-final class ProductsController extends AbstractController
+class ProductsController extends AbstractController
 {
     #[Route('/produits', name: 'app_all_products')]
     #[IsGranted('ROLE_USER')]
