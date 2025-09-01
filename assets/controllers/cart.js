@@ -1,7 +1,7 @@
 import '../styles/cart.css';
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Add active class on menu link leading to cart page
+    // Highlight cart menu link
     const cartLink = document.getElementsByClassName("cart");
     cartLink[0].classList.add('active');
 

@@ -16,9 +16,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-final class ProductsController extends AbstractController
+class ProductsController extends AbstractController
 {
-    #[Route('/produits', name: 'app_all_products')]
+    #[Route('/products', name: 'app_all_products')]
     #[IsGranted('ROLE_USER')]
     public function index(ManagerRegistry $manager): Response
     {
@@ -28,12 +28,11 @@ final class ProductsController extends AbstractController
         ]);
     }
 
-    #[Route('/produit/{id}', name: 'app_detailed_product')]
+    #[Route('/product/{id}', name: 'app_detailed_product')]
     #[IsGranted('ROLE_USER')]
     public function detailedProduct(ManagerRegistry $manager, int $id, Request $request, EntityManagerInterface $em): Response
     {
         $sweat = $manager->getRepository(Sweat::class)->find($id);
-        
         if (!$sweat) {
             throw new NotFoundHttpException('Le produit demandé est introuvable.');
         }
@@ -41,6 +40,7 @@ final class ProductsController extends AbstractController
         $form = $this->createForm(AddCartType::class, ['size' => 'm']);
         $form->handleRequest($request);
 
+        // Form submission management
         if ($form->isSubmitted() && $form->isValid()) {
             $cart = new Cart();
             $sizeValue = $form->get('size')->getData();

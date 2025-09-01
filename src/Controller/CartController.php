@@ -4,9 +4,8 @@ namespace App\Controller;
 
 use App\Form\RemoveCartType;
 use App\Repository\CartRepository;
+use App\Service\StripeService;
 use Doctrine\ORM\EntityManagerInterface;
-use Stripe\PaymentIntent;
-use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -15,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-final class CartController extends AbstractController
+class CartController extends AbstractController
 {
     #[Route('/cart', name: 'app_cart')]
     #[IsGranted('ROLE_USER')]
@@ -26,6 +25,8 @@ final class CartController extends AbstractController
         $allCartForms = [];
         $allCartFormsViews = [];
         $totalPrice = 0;
+
+        // Create all forms
         foreach ($cartProducts as $cartProduct) {
             $form = $formFactory->createNamed(
                 'form_cart_' . $cartProduct->getId(),
@@ -38,6 +39,7 @@ final class CartController extends AbstractController
             $totalPrice += $cartProduct->getSweatVariant()->getSweat()->getPrice();
         }
 
+        // Manage submission form
         foreach ($allCartForms as $id => $form) {
             if ($form->isSubmitted() && $form->isValid()) {
                 $cartProduct = $form->getData();
@@ -57,21 +59,18 @@ final class CartController extends AbstractController
 
     #[Route('/cart-payment', name:'app_cart_payment')]
     #[IsGranted('ROLE_USER')]
-    public function cartPayment(CartRepository $cartRepository): JsonResponse
+    public function cartPayment(CartRepository $cartRepository, StripeService $stripeService): JsonResponse
     {
         $cartProducts = $cartRepository->findWithSweatAndSizeByCustomer($this->getUser());
+
+        // Set amount to pay
         $totalPrice = 0;
         foreach ($cartProducts as $cartProduct) {
             $totalPrice += $cartProduct->getSweatVariant()->getSweat()->getPrice();
         } 
-        $amount = (int) round($totalPrice*100);
+        $amount = (int) round($totalPrice*100); // $amount is in cents
 
-        Stripe::setApiKey($this->getParameter('stripe_secret_key'));
-        $paymentIntent = PaymentIntent::create([
-            'amount' => $amount, // montant en centimes
-            'currency' => 'eur',
-            'automatic_payment_methods' => ['enabled' => true]
-        ]);
+        $paymentIntent = $stripeService->createPaymentIntent($amount);
 
         return new JsonResponse([
             'clientSecret' => $paymentIntent->client_secret,
@@ -82,6 +81,7 @@ final class CartController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function cartPaymentConfirmed(CartRepository $cartRepository, EntityManagerInterface $em): JsonResponse
     {
+        // Empty the cart now products have been payed
         $cartProducts = $cartRepository->findBy(['customer' => $this->getUser()]);
         foreach ($cartProducts as $cartProduct) {
             $em->remove($cartProduct);

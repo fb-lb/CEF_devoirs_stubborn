@@ -1,7 +1,7 @@
 import '../styles/all-products.css';
 import '../styles/partials/products/_card_shop.css';
 
-// Add active class on menu link leading to all products page
+// Highlight shop menu link
 document.addEventListener("DOMContentLoaded", () => {
     const shopLink = document.getElementsByClassName("shop");
     shopLink[0].classList.add('active');
