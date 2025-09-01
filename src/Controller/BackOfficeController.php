@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class BackOfficeController extends AbstractController
 {
-    #[Route('/back-office', name: 'app_back_office')]
+    #[Route('/admin', name: 'app_back_office')]
     #[IsGranted('ROLE_ADMIN')]
     public function index(Request $request, EntityManagerInterface $em, SizeRepository $sizeRepository, SweatRepository $sweatRepository, FormFactoryInterface $formFactory): Response
     {

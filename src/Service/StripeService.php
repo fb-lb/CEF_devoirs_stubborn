@@ -16,7 +16,7 @@ class StripeService
     public function createPaymentIntent(int $amount, string $currency = 'eur'): PaymentIntent
     {
         return PaymentIntent::create([
-            'amount' => $amount,
+            'amount' => $amount, // amount in cents
             'currency' => $currency,
             'automatic_payment_methods' => ['enabled' => true],
         ]);

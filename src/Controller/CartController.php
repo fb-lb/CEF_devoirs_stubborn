@@ -25,6 +25,8 @@ class CartController extends AbstractController
         $allCartForms = [];
         $allCartFormsViews = [];
         $totalPrice = 0;
+
+        // Create all forms
         foreach ($cartProducts as $cartProduct) {
             $form = $formFactory->createNamed(
                 'form_cart_' . $cartProduct->getId(),
@@ -37,6 +39,7 @@ class CartController extends AbstractController
             $totalPrice += $cartProduct->getSweatVariant()->getSweat()->getPrice();
         }
 
+        // Manage submission form
         foreach ($allCartForms as $id => $form) {
             if ($form->isSubmitted() && $form->isValid()) {
                 $cartProduct = $form->getData();
@@ -59,11 +62,13 @@ class CartController extends AbstractController
     public function cartPayment(CartRepository $cartRepository, StripeService $stripeService): JsonResponse
     {
         $cartProducts = $cartRepository->findWithSweatAndSizeByCustomer($this->getUser());
+
+        // Set amount to pay
         $totalPrice = 0;
         foreach ($cartProducts as $cartProduct) {
             $totalPrice += $cartProduct->getSweatVariant()->getSweat()->getPrice();
         } 
-        $amount = (int) round($totalPrice*100);
+        $amount = (int) round($totalPrice*100); // $amount is in cents
 
         $paymentIntent = $stripeService->createPaymentIntent($amount);
 
@@ -76,6 +81,7 @@ class CartController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function cartPaymentConfirmed(CartRepository $cartRepository, EntityManagerInterface $em): JsonResponse
     {
+        // Empty the cart now products have been payed
         $cartProducts = $cartRepository->findBy(['customer' => $this->getUser()]);
         foreach ($cartProducts as $cartProduct) {
             $em->remove($cartProduct);

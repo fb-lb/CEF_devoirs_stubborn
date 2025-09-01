@@ -24,7 +24,7 @@ class RegistrationController extends AbstractController
     {
     }
 
-    #[Route('/inscription', name: 'app_register')]
+    #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         if ($this->getUser()) {
@@ -39,10 +39,12 @@ class RegistrationController extends AbstractController
             $plainPassword = $form->get('plainPassword')->getData();
             $confirmPassword = $form->get('confirm_password')->getData();
             
+            // Check that password and confirmed password are the same
             if ($plainPassword !== null && $confirmPassword !== null && $plainPassword !== $confirmPassword) {
                 $form->get('confirm_password')->addError(new FormError('Les mots de passe ne sont pas identiques.'));
             }
 
+            // Form submission
             if ($form->isValid()) {
                 // encode the plain password
                 $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
@@ -60,8 +62,6 @@ class RegistrationController extends AbstractController
                         ->context([ 'user' => $user ])
                         ->locale('fr')
                     );
-                
-                // do anything else you need here, like send an email
 
                 return $this->redirectToRoute('app_home', ['registered' => 1]);
             }
@@ -76,15 +76,13 @@ class RegistrationController extends AbstractController
     public function verifyUserEmail(Request $request, TranslatorInterface $translator, CustomerRepository $customerRepository): Response
     {
         $id = $request->query->get('id');
-
-        if (null === $id) {
+        if (!$id === null) {
             $this->addFlash('verify_email_error', "Le compte a été supprimé de notre base de données. Veuillez recréer un compte avec cette adresse mail.");
             return $this->redirectToRoute('app_home');
         }
 
         $user = $customerRepository->find($id);
-
-        if (null === $user) {
+        if (!$user === null) {
             $this->addFlash('verify_email_error', "Cette adresse mail n'est pas reconnue dans notre base de données. Veuillez recréer un compte avec cette adresse mail.");
             return $this->redirectToRoute('app_home');
         }

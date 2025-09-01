@@ -1,6 +1,6 @@
 import '../styles/back-office.css';
 
-// Add active class on menu link leading to admin page
+// Highlight back-office menu link
 document.addEventListener("DOMContentLoaded", () => {
     const adminLink = document.getElementsByClassName("admin");
     adminLink[0].classList.add('active');

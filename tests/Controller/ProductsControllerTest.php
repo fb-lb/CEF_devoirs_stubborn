@@ -98,8 +98,10 @@ class ProductsControllerTest extends TestCase
             }
         };
         
+        // Execution
         $response = $controller->detailedProduct($manager, 1, new Request(), $em);
 
+        // Assertions
         $this->assertSame(302, $response->getStatusCode());
         $this->assertContains(['success', "Le sweat SweatTest de taille M a bien été ajouté au panier"], $controller->flashes);
         $this->assertSame('redirected', $response->headers->get('Location'));
