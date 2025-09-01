@@ -88,7 +88,12 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "test": "phpunit"
+        "server": "symfony server:start",
+        "test": "phpunit",
+        "start": [
+            "@test",
+            "@server"
+        ]
     },
     "conflict": {
         "symfony/symfony": "*"
