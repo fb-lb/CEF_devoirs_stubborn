@@ -93,6 +93,15 @@
         "start": [
             "@test",
             "@server"
+        ],
+        "cache-clear": "symfony console cache:clear --env=prod --no-interaction",
+        "cache-warmup": "symfony console cache:warmup --env=prod --no-interaction",
+        "asset-map-compile": "symfony console asset-map:compile",
+        "start-prod": [
+            "@cache-clear",
+            "@cache-warmup",
+            "@asset-map-compile",
+            "@server"
         ]
     },
     "conflict": {
